@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maligayang Kaarawan, Aking Sinta! ✨</title>
+    <title>Happy Birthday, Baby! ✨</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&family=Playfair+Display:ital,wght=0,600;1,400&family=Poppins:wght=300;400;600&display=swap" rel="stylesheet">
@@ -111,6 +111,44 @@
             background: #ffe5ec;
         }
 
+        /* Pop-up Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(74, 21, 37, 0.4);
+            backdrop-filter: blur(4px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            animation: scaleUp 0.3s ease-out forwards;
+        }
+
+        .modal-content h3 {
+            color: var(--deep-pink);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
         /* Trivia / Quiz */
         .quiz-card {
             background: white;
@@ -216,21 +254,11 @@
             white-space: pre-line;
         }
 
-        .essay-section h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: var(--deep-pink);
-            margin-top: 25px;
-            margin-bottom: 10px;
-            border-left: 4px solid var(--deep-pink);
-            padding-left: 10px;
-        }
-
         .essay-section p {
             font-size: 1.05rem;
             line-height: 1.8rem;
             text-align: justify;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-indent: 20px;
         }
 
@@ -251,23 +279,36 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes scaleUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Pop-up Notification Container -->
+    <div class="modal-overlay" id="customModal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Munting Surpresa ✨</h3>
+            <p id="modalBody">Message content here...</p>
+            <button class="btn" style="margin: 0; padding: 10px 25px;" onclick="closeModal()">Salamat, Baba! ❤️</button>
+        </div>
+    </div>
+
     <!-- STEP 1: Unboxing -->
     <div id="screen1" class="screen active">
-        <h1>Maligayang Kaarawan, GF Kong Maganda! 🏳️‍🌈✨</h1>
-        <p class="intro">Kahit magkalayo tayo, hinding-hindi ako papayag na hindi kita maireregaluhan sa birthday mo! Bago ang pinaka-sulat ko, i-unlock mo muna ang apat na munting surpresa na ito.</p>
+        <h1>Maligayang Kaarawan, GF Kong Maganda!✨</h1>
+        <p class="intro">Kahit magkalayo tayo, hinding-hindi ako papayag na hindi kita maireregaluhan sa birthday mo! Buksan mo itong apat na regalo para sa'yo.</p>
         
         <div class="box-grid">
-            <div class="gift-box" id="box1" onclick="openBox(1, '🌸 Compliment: Ang ganda-ganda mo palagi, kahit bagong gising o kahit nakasimangot ka habang may tinuturo sa akin.')">🎁</div>
-            <div class="gift-box" id="box2" onclick="openBox(2, '🌟 Paalala: Walang distansya o kilometro ang makakabawas sa pagmamahal ko sa\'yo araw-araw.')">🎁</div>
-            <div class="gift-box" id="box3" onclick="openBox(3, '✨ Fact: Ikaw ang pinakapaborito kong ka-debate, ka-asaran, at ang tanging taong laging nananalo sa puso ko.')">🎁</div>
-            <div class="gift-box" id="box4" onclick="openBox(4, '💖 Promise: Magkalayo man tayo ngayon, darating ang araw na magkatabi na tayong manonood ng paborito nating movies habambuhay.')">🎁</div>
+            <div class="gift-box" id="box1" onclick="openBox(1, 'Munting Bulaklak 🌸', 'Ang ganda-ganda mo palagi, kahit bagong gising o kahit nakasimangot ka habang may tinuturo sa akin.')">🎁</div>
+            <div class="gift-box" id="box2" onclick="openBox(2, 'Paalala sa Bituin 🌟', 'Walang distansya o kilometro ang makakabawas sa pagmamahal ko sa\'yo araw-araw.')">🎁</div>
+            <div class="gift-box" id="box3" onclick="openBox(3, 'Katotohanan ✨', 'Ikaw ang pinakapaborito kong ka-debate, ka-asaran, at ang tanging taong laging nananalo sa puso ko.')">🎁</div>
+            <div class="gift-box" id="box4" onclick="openBox(4, 'Pangako 💖', 'Magkalayo man tayo ngayon, darating ang araw na magkatabi na tayong manonood ng paborito nating movies habambuhay.')">🎁</div>
         </div>
         
-        <p id="boxMessage" style="font-style: italic; min-height: 50px; color: var(--deep-pink); font-weight: 600; padding: 0 10px;"></p>
         <button id="nextBtn1" class="btn" style="display: none;" onclick="nextScreen(2)">Next Level: Ang Ating Larong Paborito! →</button>
     </div>
 
@@ -317,29 +358,24 @@
                 Sana'y magustuhan mo itong digital na handog ko.
             </div>
 
-            <hr style="border: 0; border-top: 1px dashed var(--rose-pink); margin-bottom: 20px;">
+            <hr style="border: 0; border-top: 1px dashed var(--rose-pink); margin-bottom: 25px;">
 
-            <!-- Long Essay Content split by emotion -->
+            <!-- Long Essay Content without headings -->
             <div class="essay-section">
-                <h2>I. Yung Medyo Patawanin Naman Kita (Kasi Baka Seryoso Ka Masyado sa Screen) 😂</h2>
                 <p>
-                    Happy, happy birthday sa taong pinaka-bossy, pinakamatalinghagang makipag-debate, pero pinakamamahal ko sa buong mundo! Una sa lahat, gusto ko lang magpasalamat kasi kahit gaano kalala ang mga topak ko, hindi mo pa rin ako pinapalitan (at aminin natin, mas malala yung mga topak at pagiging matampuhin mo kapag gutom ka o kapag bigla ka na lang nananahimik habang magka-videocall tayo, naku talaga!). Salamat sa pag-tolerate sa akin kahit minsan ang hilig kong mang-asar hanggang sa magsalubong na yang maganda mong kilay at mag-cross arms ka sa harap ng camera. 
+                    Happy, happy birthday sa taong pinaka-malambing na parang kambing hehe jk lang, pinakamatalinghagang makipag-debate pero soft hearted AHHAHAHA, pero pinakamamahal ko sa buong mundo! Una sa lahat, gusto ko lang magpasalamat kasi kahit gaano kalala ang mga topak ko, hindi mo pa rin ako pinapalitan (at aminin natin, mas malala yung mga topak at pagiging matampuhin mo kapag gutom ka o kapag bigla ka na lang nananahimik habang magka-videocall tayo, naku talaga!). Salamat sa pag-tolerate sa akin kahit minsan ang hilig kong mang-asar hanggang sa magsalubong na yang maganda mong kilay at mag-cross arms ka sa harap ng camera. 
                 </p>
                 <p>
                     Isang taon ka na namang tumanda, aking sinta! Ibig sabihin nun, isang taon mo na naman akong makakasama na mangungulit, mang-aagaw ng atensyon mo, at magpapadala ng mga random na memes at TikToks sa madaling araw habang LDR tayo. Huwag kang mag-alala, kahit magka-wrinkles ka na katititig sa akin nang masama kapag natatalo kita sa asaran, para sa akin ikaw pa rin ang pinaka-cute, pinakamaganda, at pinaka-baby na girlfriend sa buong universe. Libre magsungit ngayon kasi birthday mo, pero bukas bawal na ha? Ako naman ang mananalo sa debate natin! Haha!
                 </p>
-
-                <h2>II. Mga Bagay na Gusto Kong I-compliment sa'yo (Para Kiligin Ka Naman) 🥰</h2>
                 <p>
                     Alam mo ba kung bakit hinding-hindi ako mapapagod na tumitig sa screen tuwing kausap ka? Kasi bukod sa napakaganda mong mukha (lalo na kapag ngumingiti ka nang totoo at nawawala na naman nang tuluyan yung mga mata mo), napakaganda rin ng utak at ng buong puso mo. Humahanga ako sa kung paano mo harapin ang bawat araw—ang talino mo kapag nagpapalitan tayo ng kuro-kuro, kung paano mo ipaglaban ang mga opinyon mo tuwing nagdedebate tayo, at kung paano ka magmalasakit nang palihim sa mga taong mahal mo. Sobrang sexy ng utak mo, pramis!
                 </p>
                 <p>
                     Napakaswerte ko kasi napaka-maalalahanin mo na partner. Kahit malayo tayo sa isa't isa, ramdam na ramdam ko pa rin ang alaga mo. Yung mahilig tayong mag-surpresa at magpadala ng mga regalo sa isa't isa nang walang okasyon, yung mga simpleng pag-tanong mo kung nakakain na ba ako sa tamang oras, at yung mga gabi na nagpapalitan tayo ng malalalim na deep talks tungkol sa buhay at hinaharap natin—lahat yun iniingatan ko bilang pinakamahalagang kayamanan ko. Pinapatunayan mo sa akin araw-araw na dalawang babaeng nagmamahalan ay kayang lagpasan ang kahit anong bagyo ng buhay. Sobrang nakakaproud ka palagi, aking reyna.
                 </p>
-
-                <h2>III. At Heto Naman Yung Para Paiyakin Ka (Yung Todo Touch at Iyak-Pusa) 🥺❤️</h2>
                 <p>
-                    Sa totoo lang, habang isinusulat ko 'to at binubuo ang munting page na 'to para sa'yo, napatigil ako at nagpasalamat talaga ako sa Diyos at sa tadhana. Sa dinami-rami ng tao sa mundo, sa dami ng pwedeng magkatagpo, napakapalad ko na ikaw ang ibinigay sa akin. Ikaw ang naging nag-iisang ligtas na lugar ko sa tuwing magulo at maingay ang mundo. Kahit may distansya sa pagitan natin, kapag narinig ko na ang boses mo o kapag magkasabay tayong nanonood ng movie habang magka-call, parang nawawala lahat ng pagod ko. Sapat na sa akin na ikaw ang kasama ko sa dulo ng bawat araw.
+                    Sa totoo lang, habang isinusulat ko 'to at binubuo ang munting page na 'to para sa'yo, napatigil ako at nagpasalamat talaga ako sa Diyos at sa tadhana. Sa dinami-rami ng tao sa mundo, sa dami ng pwedeng magkatagpo, napakapalad ko na ikaw ang ibinigay sa akin. Ikaw ang naging nag-iisang ligtas na lugar ko sa tuwing magulo at maingay ang mundo. Kahit may distansya sa pagitan natin, kapag narinig ko na ang boses mo o kapag magkasabay tayong nanonood ng movie habang magka-call, parang nawawala lahat ng pagod ko. Sapat na sa amen na ikaw ang kasama ko sa dulo ng bawat araw.
                 </p>
                 <p>
                     Salamat sa hindi pagbitaw sa tuwing nagiging mahirap ang distansya natin. Salamat sa pagpili sa akin araw-araw, kahit na alam kong malayo ako sa pagiging perpekto at marami pa akong pagkukulang bilang partner mo. Hiling ko sa kaarawan mo na sana ibigay sa'yo ng mundo ang lahat ng kapayapaan, kaligayahan, at tagumpay na nararapat para sa isang katulad mo. Sana huwag kang mapagod maging ikaw, dahil para sa akin, sapat na sapat ka na at hinding-hindi kita ipagpapalit sa kahit na sino.
@@ -351,7 +387,7 @@
 
             <div class="signature">
                 Ang nag-iisa mong mahal, <br>
-                [Ang Pangalan Mo]
+                Baba
             </div>
         </div>
     </div>
@@ -359,7 +395,63 @@
     <script>
         let openedBoxes = 0;
         let audioStarted = false;
-        
+        let audioCtx;
+
+        // Sound Synthesis Functions
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playClickSound() {
+            initAudio();
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(600, audioCtx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.1);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.1);
+        }
+
+        function playCorrectSound() {
+            initAudio();
+            let now = audioCtx.currentTime;
+            let notes = [523.25, 659.25, 783.99, 1046.50]; // Arpeggio C chord
+            notes.forEach((freq, idx) => {
+                let osc = audioCtx.createOscillator();
+                let gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(freq, now + (idx * 0.08));
+                gain.gain.setValueAtTime(0.08, now + (idx * 0.08));
+                gain.gain.linearRampToValueAtTime(0.001, now + (idx * 0.08) + 0.2);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(now + (idx * 0.08));
+                osc.stop(now + (idx * 0.08) + 0.2);
+            });
+        }
+
+        function playWrongSound() {
+            initAudio();
+            let osc = audioCtx.createOscillator();
+            let gain = audioCtx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.25);
+            gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            gain.gain.linearRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.25);
+        }
+
         // Chiptune Happy Birthday melody
         const birthdayMelody = [
             261.63, 261.63, 293.66, 261.63, 349.23, 329.63, 
@@ -374,45 +466,58 @@
             400, 400, 800, 800, 800, 1600
         ];
 
-        let audioCtx;
         function playBirthdayMelody() {
             if(audioStarted) return;
             audioStarted = true;
-            try {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                let noteIndex = 0;
-                function playNextNote() {
-                    if (!audioStarted) return;
-                    let osc = audioCtx.createOscillator();
-                    let gainNode = audioCtx.createGain();
-                    osc.type = 'sine';
-                    osc.frequency.value = birthdayMelody[noteIndex % birthdayMelody.length];
-                    gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (melodyNoteDurations[noteIndex % melodyNoteDurations.length]/1000) - 0.05);
-                    osc.connect(gainNode);
-                    gainNode.connect(audioCtx.destination);
-                    osc.start();
-                    osc.stop(audioCtx.currentTime + (melodyNoteDurations[noteIndex % melodyNoteDurations.length]/1000));
-                    setTimeout(() => {
-                        noteIndex++;
-                        playNextNote();
-                    }, melodyNoteDurations[noteIndex % melodyNoteDurations.length]);
-                }
-                playNextNote();
-            } catch(e) { console.log(e); }
+            initAudio();
+            let noteIndex = 0;
+            function playNextNote() {
+                if (!audioStarted) return;
+                let osc = audioCtx.createOscillator();
+                let gainNode = audioCtx.createGain();
+                osc.type = 'sine';
+                osc.frequency.value = birthdayMelody[noteIndex % birthdayMelody.length];
+                gainNode.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + (melodyNoteDurations[noteIndex % melodyNoteDurations.length]/1000) - 0.05);
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + (melodyNoteDurations[noteIndex % melodyNoteDurations.length]/1000));
+                setTimeout(() => {
+                    noteIndex++;
+                    playNextNote();
+                }, melodyNoteDurations[noteIndex % melodyNoteDurations.length]);
+            }
+            playNextNote();
         }
 
-        function openBox(id, message) {
+        // Pop-up Modal Controller
+        function showModal(title, body) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerText = body;
+            document.getElementById('customModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            playClickSound();
+            document.getElementById('customModal').style.display = 'none';
+            if (openedBoxes === 4) {
+                document.getElementById('nextBtn1').style.display = 'inline-block';
+            }
+        }
+
+        function openBox(id, title, compliment) {
             const box = document.getElementById('box' + id);
             if (!box.classList.contains('opened')) {
+                playClickSound();
                 box.classList.add('opened');
                 box.innerHTML = '❤️';
                 openedBoxes++;
                 confetti({ particleCount: 20, spread: 30, origin: { y: 0.6 } });
-            }
-            document.getElementById('boxMessage').innerText = message;
-            if (openedBoxes === 4) {
-                document.getElementById('nextBtn1').style.display = 'inline-block';
+                showModal(title, compliment);
+            } else {
+                playClickSound();
+                showModal(title, compliment);
             }
         }
 
@@ -457,17 +562,20 @@
             const data = quizData[currentQuestionIndex];
             const feedback = document.getElementById('quizFeedback');
             if (selectedIndex === data.correct) {
+                playCorrectSound();
                 feedback.innerHTML = "Tumpak! 🥳 Ang galing naman ng baby ko!";
                 feedback.style.color = "#2e7d32";
                 confetti({ particleCount: 30, spread: 40 });
                 document.getElementById('quizNextBtn').style.display = 'inline-block';
             } else {
+                playWrongSound();
                 feedback.innerHTML = data.wrongFeedback;
                 feedback.style.color = "#d32f2f";
             }
         }
 
         function advanceQuiz() {
+            playClickSound();
             currentQuestionIndex++;
             if (currentQuestionIndex < quizData.length) {
                 loadQuiz();
@@ -477,6 +585,7 @@
         }
 
         function nextScreen(screenNum) {
+            playClickSound();
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById('screen' + screenNum).classList.add('active');
             if (screenNum === 2) {
@@ -493,16 +602,16 @@
                 navigator.mediaDevices.getUserMedia({ audio: true })
                 .then(function(stream) {
                     micStream = stream;
-                    const audioCtxMic = new (window.AudioContext || window.webkitAudioContext)();
-                    const analyser = audioCtxMic.createAnalyser();
-                    const microphone = audioCtxMic.createMediaStreamSource(stream);
-                    const javascriptNode = audioCtxMic.createScriptProcessor(2048, 1, 1);
+                    initAudio();
+                    const analyser = audioCtx.createAnalyser();
+                    const microphone = audioCtx.createMediaStreamSource(stream);
+                    const javascriptNode = audioCtx.createScriptProcessor(2048, 1, 1);
 
                     analyser.smoothingTimeConstant = 0.8;
                     analyser.fftSize = 1024;
                     microphone.connect(analyser);
                     analyser.connect(javascriptNode);
-                    javascriptNode.connect(audioCtxMic.destination);
+                    javascriptNode.connect(audioCtx.destination);
 
                     javascriptNode.onaudioprocess = function() {
                         const array = new Uint8Array(analyser.frequencyBinCount);
@@ -530,7 +639,7 @@
             if (!flame.classList.contains('extinguished')) {
                 flame.classList.add('extinguished');
                 
-                // Music only plays EXACTLY when blown!
+                // Play music EXACTLY when candle is blown!
                 playBirthdayMelody();
 
                 var duration = 4 * 1000;
